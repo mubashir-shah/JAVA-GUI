@@ -1,0 +1,96 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CalculatorGUI extends JFrame implements ActionListener {
+
+    private JTextField display;
+
+    private double operand1 = 0;
+    private String operator = "";
+
+    public CalculatorGUI() {
+        // set up the frame
+        setTitle("Calculator");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(200, 200);
+        setLocationRelativeTo(null);
+
+        // set up the display
+        display = new JTextField(10);
+        display.setEditable(false);
+        display.setHorizontalAlignment(JTextField.RIGHT);
+
+        // set up the buttons
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 4));
+        String[] buttonLabels = { "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+" };
+        for (String label : buttonLabels) {
+            JButton button = new JButton(label);
+            button.addActionListener(this);
+            buttonPanel.add(button);
+        }
+
+        // add components to the frame
+        getContentPane().add(display, BorderLayout.NORTH);
+        getContentPane().add(buttonPanel, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if ("0123456789.".contains(command)) {
+            // digit or decimal point
+            if (operator.isEmpty()) {
+                // building first operand
+                display.setText(display.getText() + command);
+            } else {
+                // building second operand
+                display.setText("");
+                operator = "";
+                display.setText(command);
+            }
+        } else if ("+-*/".contains(command)) {
+            // operator
+            if (operator.isEmpty()) {
+                // setting operator and storing first operand
+                operand1 = Double.parseDouble(display.getText());
+                operator = command;
+                display.setText("");
+            }
+        } else if (command.equals("=")) {
+            // equals sign
+            if (!operator.isEmpty()) {
+                // calculating result and displaying it
+                double operand2 = Double.parseDouble(display.getText());
+                double result;
+                switch (operator) {
+                    case "+":
+                        result = operand1 + operand2;
+                        break;
+                    case "-":
+                        result = operand1 - operand2;
+                        break;
+                    case "*":
+                        result = operand1 * operand2;
+                        break;
+                    case "/":
+                        result = operand1 / operand2;
+                        break;
+                    default:
+                        result = 0;
+                        break;
+                }
+                display.setText(Double.toString(result));
+                operand1 = result;
+                operator = "";
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        CalculatorGUI calculator = new CalculatorGUI();
+        calculator.setVisible(true);
+    }
+}
