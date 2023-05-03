@@ -1,0 +1,38 @@
+import java.util.*;
+import javax.swing.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
+public class book {
+    public static void main (String Str[]){
+       frame.setTitle(" RIch dad poor dad");//Set the title
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);//exits the frame
+        frame.setResizable(false);//nows  not resizable
+        frame.setSize(400,600);//set the size of the
+        frame.setVisible(true);//visibility
+        ImageIcon image = new ImageIcon("java sample.jpg");//create the image
+             frame.setIconImage(image.getImage());//    change the icon of the java sample
+            frame.getContentPane().setBackground(Color.red);//change backround color
+            frame.getContentPane().setBackground(new Color (0 ,0 ,0));//change backround color in hexadecimal form;
+
+        myframe mframe = new myframe();
+    }
+
+}
+ class myframe extends JFrame {
+    myframe(){
+
+        this.setTitle(" RIch dad poor dad");//Set the title
+        this.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);//exits the frame
+        this.setResizable(false);//nows  not resizable
+        this.setSize(400,600);//set the size of the
+        this.setVisible(true);//visibility
+        ImageIcon image = new ImageIcon("java sample.jpg");//create the image
+        this.setIconImage(image.getImage());//    change the icon of the java sample
+        this.getContentPane().setBackground(Color.red);//change backround color
+        this.getContentPane().setBackground(new Color (0 ,0 ,0));//change backround color in hexadecimal form;
+    
+
+    }
+
+}
