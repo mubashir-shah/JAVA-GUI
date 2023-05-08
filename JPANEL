@@ -1,0 +1,32 @@
+import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+public class Jpanels {
+    public static void main(String[] args){
+        JLabel label = new JLabel();
+        label.setText("This is the Sample program for JPanels...");
+        JPanel pan = new JPanel();
+
+        pan.setBackground(Color.BLACK);
+        pan.setBounds(0,0,250,250);
+
+        JPanel pan1 = new JPanel();
+        pan.setBackground(Color.GREEN);
+        pan.setBounds(250,0,250,250);
+
+        JPanel pan2 = new JPanel();
+        pan.setBackground(Color.BLUE);
+        pan.setBounds(0,250,500,250);
+
+        JFrame frame= new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setLayout(null);
+        frame.setSize(750,750);
+        frame.add(pan);
+        frame.add(pan1);
+        frame.add(pan2);
+        frame.add(label);
+    }
+}
